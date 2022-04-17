@@ -6,7 +6,7 @@ Vue电商项目：尚品汇
 
 Vue、Webpack、Vuex、Vue-router、Axios、less
 
-## 项目目录结构解析
+## 📺项目目录结构解析
 
 node_modules 文件夹：项目依赖的文件夹
 
@@ -27,6 +27,21 @@ src文件夹：
 - package.json 项目的身份证
 
 - package.lock.json 缓存行性的文件
+
+## 📟项目路由分析
+
+Vue-router,前端所谓的路由：KV 键值对。
+Key：URL（地址栏的路径）。Value:响应的路由组件。
+
+项目是：上中下的一个结构。
+
+路由组件：Home首页路由组件、Search路由组件、login登陆路由、register注册路由
+
+非路由组件：
+
+Header（只是在首页、搜索页出现）
+Footer（在首页、搜索页有，但是在登陆页面没有）
+
 ## 📲功能点
 
 - 封装通用组件
