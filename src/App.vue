@@ -1,8 +1,25 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div>
+    <!-- 3. 使用 -->
+    <Header></Header>
+    <Footer></Footer>
   </div>
 </template>
+
+<script>
+// 1. 引入
+import Header from './components/MyHeader'
+import Footer from './components/MyFooter'
+
+// 2. 注册
+export default {
+  name: '',
+  components: {
+    Header,
+    Footer
+  }
+}
+</script>
 
 <style lang="less">
 #app {
