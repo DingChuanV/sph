@@ -6,7 +6,6 @@
   版本：v1.0
 -->
 <template>
-
   <!-- 底部 -->
   <div class="footer">
     <div class="footer-container">
@@ -63,7 +62,7 @@
         </div>
         <div class="footerItem">
           <h4>帮助中心</h4>
-          <img src="./images/wx_cz.jpg" />
+          <img src="./images/wx_cz.jpg"/>
         </div>
       </div>
       <div class="copyright">
@@ -132,16 +131,25 @@ export default {
   //方法集合
   methods: {},
   //声明周期 - 创建完成（可以访问当前this实例）
-  created() { },
+  created() {
+  },
   //声明周期 - 挂载完成（可以访问DOM元素）
-  mounted() { },
-  beforeCreate() { }, //生命周期 - 创建之前
-  beforeMount() { }, //生命周期 - 挂载之前
-  beforeUpdate() { }, //生命周期 - 更新之前
-  updated() { }, //生命周期 - 更新之后
-  beforeDestroy() { }, //生命周期 - 销毁之前
-  destroyed() { }, //生命周期 - 销毁完成
-  activated() { } //如果页面有keep-alive缓存功能，这个函数会触发
+  mounted() {
+  },
+  beforeCreate() {
+  }, //生命周期 - 创建之前
+  beforeMount() {
+  }, //生命周期 - 挂载之前
+  beforeUpdate() {
+  }, //生命周期 - 更新之前
+  updated() {
+  }, //生命周期 - 更新之后
+  beforeDestroy() {
+  }, //生命周期 - 销毁之前
+  destroyed() {
+  }, //生命周期 - 销毁完成
+  activated() {
+  } //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style scoped lang="less">
@@ -188,7 +196,6 @@ export default {
 
         li {
           display: inline;
-
           .space {
             border-left: 1px solid #666;
             width: 1px;
@@ -198,7 +205,6 @@ export default {
           }
         }
       }
-
       p {
         margin: 10px 0;
         text-align: center;
