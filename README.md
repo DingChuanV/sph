@@ -16,31 +16,30 @@ src文件夹：
 
 - assets文件夹：一般放置静态资源（一般放置多个组件公用的静态资源），需要注意的是，放置在assets文件夹里面的静态资源，在webpack打包的时候，webpack会把静态资源当作一个模块，打包在JS文件里。
 
-- components文件夹：一般放置的是非路由组件（全局组件）
+- components文件夹：一般放置的是非路由组件（全局组件）。
 
-- App.vue 唯一的根组件
+- App.vue 唯一的根组件，Vue
 
 - main.js 程序的入口文件，也是整个程序当中最先执行的文件
 
-- babel.config.js 将ES6转化成ES5
+- babel.config.js 配置文件，babel（翻译官）将ES6转化成ES5，兼容
 
-- package.json 项目的身份证
+- package.json 项目的身份证，记录着项目的信息。（项目的运行）
 
-- package.lock.json 缓存行性的文件
+- package.lock.json 缓存性的文件
 
 ## 📟项目路由分析
 
-Vue-router,前端所谓的路由：KV 键值对。
+Vue-router,前端所谓的路由：K-V 键值对。
 Key：URL（地址栏的路径）。Value:响应的路由组件。
 
-项目是：上中下的一个结构。
+项目是：上-中-下的一个结构。
 
 路由组件：Home首页路由组件、Search路由组件、login登陆路由、register注册路由
 
 非路由组件：
-
-Header（只是在首页、搜索页出现）
-Footer（在首页、搜索页有，但是在登陆页面没有）
+- Header（只是在首页、搜索页出现）
+- Footer（在首页、搜索页有，但是在登陆、注册页面没有）
 
 ## 📲功能点
 
@@ -54,6 +53,7 @@ Footer（在首页、搜索页有，但是在登陆页面没有）
 - 。。。。
 
 ## 后续继续完善
+
 
 ## Project setup
 ```
