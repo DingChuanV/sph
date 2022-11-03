@@ -93,7 +93,7 @@ export default {
       // this.$router.push(`/search/${this.keyword}?k=${this.keyword.toUpperCase()}`)
 
       // 3.3 第三种形式：对象(常用的)前提需要给路由起一个名字name
-      this.$router.push({name: "search", params: {keyword: this.keyword}, query: {k: this.keyword.toUpperCase()}})
+      this.$router.push({name: "search", params: {keyword: this.keyword},query: {k: this.keyword.toUpperCase()}}, () => {}, () => {})
 
       // 4.1 如何指定params参数可传可不传,如何解决？
       // this.$router.push({name: "search", query: {k: this.keyword.toUpperCase()}})
@@ -102,10 +102,17 @@ export default {
       // this.$router.push({name: "search", params: {keyword: "" || undefined}, query: {k: this.keyword.toUpperCase()}})
 
       // 4.3 路由组件能不能传递props数据(props是父组件向子组件传递参数的)
-      /**
-       * 可以的。路由组件三种写法
-       *
-       */
+      // 详见router->index.js
+
+      // 5.1 编程式路由跳转到当前路由（参数不变），多次执行会抛出NavigationDuplicated错误？
+      // 详见router->index.js
+      // 声明式导航没有这类的问题，因为vue-router底层已经封装好了。是因为在vue-router在3.5.3,最新的vue-router引入了promise
+      // 通过给push方法传递相应的成功、失败的回调函数，可以捕捉异常，可以解决。
+      // this.$router.push({name: "search", params: {keyword: this.keyword},query: {k: this.keyword.toUpperCase()}}, () => {}, () => {})
+      // this：当前组件实例对象
+      // $router：
+
+
     }
   },
   //声明周期 - 创建完成（可以访问当前this实例）
