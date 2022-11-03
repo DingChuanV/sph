@@ -3,7 +3,8 @@
 -->
 <template>
   <div>
-    我是主页
+    <!--三级联动--已经注册为全局组件，不需要引入-->
+    <TypeNav></TypeNav>
   </div>
 </template>
 
@@ -17,9 +18,7 @@ export default {
   props: {},
   data() {
     //这里存放数据
-    return {
-
-    };
+    return {};
   },
 //计算属性 类似于data概念
   computed: {},

@@ -126,6 +126,13 @@ Footer组件：在登陆、注册时候隐藏
       this.$router.push({name: "search", params: {keyword: this.keyword}, query: {k: this.keyword.toUpperCase()}})
 ```
 
+## 6.Home模块的拆分
+具体的开发流程
+1. 先把静态页面完成
+2. 拆分出静态组件
+3. 获取服务起数据展示
+4. 动态业务
+
 ## Project setup
 
 ```
