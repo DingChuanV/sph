@@ -4,7 +4,9 @@
     <Header></Header>
     <!-- 3. router--在根组件显示-->
     <router-view/>
-    <Footer></Footer>
+    <!--Footer组件在Home、Search的时候显示，在登陆和注册的时候隐藏-->
+    <!--    <Footer v-show="$route.path=='/home' || $route.path=='/search'"></Footer>-->
+    <Footer v-show="$route.meta.show"></Footer>
   </div>
 </template>
 

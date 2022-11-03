@@ -12,16 +12,20 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: "/home",
-        component: Home
+        component: Home,
+        meta: {show: true}
     }, {
         path: "/search",
-        component: Search
+        component: Search,
+        meta: {show: true}
     }, {
         path: "/register",
-        component: Register
+        component: Register,
+        meta: {show: false}
     }, {
         path: "/login",
-        component: Login
+        component: Login,
+        meta: {show: false}
     },
     // 重定向，在项目跑起来的时候，访问 / ，立马让他定向到首页
     {
