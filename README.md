@@ -133,6 +133,19 @@ Footer组件：在登陆、注册时候隐藏
 3. 获取服务起数据展示
 4. 动态业务
 
+## 7.axios二次封装
+XmlHttpRequest、fetch、JQuery、axios。
+
+- 为什么需要二次封装axios？
+ 
+  主要是为了封装
+  - 请求响应拦截器
+  - 响应响应拦截器
+
+- 在项目中
+
+
+
 ## Project setup
 
 ```
