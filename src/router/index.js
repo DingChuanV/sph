@@ -15,9 +15,24 @@ const routes = [
         component: Home,
         meta: {show: true}
     }, {
-        path: "/search",
+        // 绑定关键字 指定需要传递传递params参数的 :keyword已经占位了
+        // 指定params参数可传可不传，只需要加一个 ？。
+        path: "/search/:keyword?",
         component: Search,
-        meta: {show: true}
+        meta: {show: true},
+        name: "search",
+        //路由组件能不能传递props数据(props是父组件向子组件传递参数的)
+        // 第一种写法 布尔值写法
+        // props: true
+        // 第二种写法：对象,额外给路由组件传递一些props
+        // props: {
+        //     a: 1,
+        //     b: 2
+        // }
+        // 第三种写法：函数式，可以把params参数、query参数，通过props传递给路由组件
+        props: ($route) => {
+            return {keyword: $route.params.keyword, k: $route.query.k}
+        }
     }, {
         path: "/register",
         component: Register,

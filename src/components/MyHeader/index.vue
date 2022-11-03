@@ -48,7 +48,8 @@
       </h1>
       <div class="searchArea">
         <form action="###" class="searchForm">
-          <input type="text" id="autocomplete" class="input-error input-xxlarge"/>
+          <!--1. 路由传递参数--当我们需要获取input中收集的参数，可以使用数据的双向绑定-->
+          <input type="text" id="autocomplete" class="input-error input-xxlarge" v-model="keyword"/>
           <!--编程式导航跳转到search页面-->
           <button class="sui-btn btn-xlarge btn-danger" type="button" @click="goSearch">
             搜索
@@ -69,7 +70,10 @@ export default {
   props: {},
   data() {
     //这里存放数据
-    return {};
+    return {
+      // <!--2. 路由传递参数--当我们需要获取input中收集的参数，可以使用数据的双向绑定-->
+      keyword: ""
+    };
   },
   //计算属性 类似于data概念
   computed: {},
@@ -79,7 +83,29 @@ export default {
   methods: {
     // 搜索按钮的回调函数，路由到search页面
     goSearch() {
-      this.$router.push('/search')
+      /**
+       * 3. 路由传递参数--当我们在Home页的时候，收集好输入信息，使用路由的params传递参数将参数传递给search路由组件
+       */
+      // 3.1 第一种方式：字符串形式
+      //this.$router.push('/search/' + this.keyword + "?k=" + this.keyword.toUpperCase())
+
+      // 3.2 第二种形式：模版字符串
+      // this.$router.push(`/search/${this.keyword}?k=${this.keyword.toUpperCase()}`)
+
+      // 3.3 第三种形式：对象(常用的)前提需要给路由起一个名字name
+      this.$router.push({name: "search", params: {keyword: this.keyword}, query: {k: this.keyword.toUpperCase()}})
+
+      // 4.1 如何指定params参数可传可不传,如何解决？
+      // this.$router.push({name: "search", query: {k: this.keyword.toUpperCase()}})
+
+      // 4.2 params参数也可以传递也可以不传递，但是如果传递是空串，如何解决?
+      // this.$router.push({name: "search", params: {keyword: "" || undefined}, query: {k: this.keyword.toUpperCase()}})
+
+      // 4.3 路由组件能不能传递props数据(props是父组件向子组件传递参数的)
+      /**
+       * 可以的。路由组件三种写法
+       *
+       */
     }
   },
   //声明周期 - 创建完成（可以访问当前this实例）

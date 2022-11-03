@@ -16,8 +16,10 @@ export default {
   components: {},
   props: {},
   data() {
-//这里存放数据
-    return {};
+    //这里存放数据
+    return {
+
+    };
   },
 //计算属性 类似于data概念
   computed: {},

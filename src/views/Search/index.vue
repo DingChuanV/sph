@@ -3,7 +3,10 @@
 -->
 <template>
   <div>
-    我是注册页
+    <h1>param参数{{ $route.params.keyword }}</h1>
+    <h1>query参数{{ $route.query.k }}</h1>
+    <!--路由组件props传递参数,只能是params参数形式-->
+    <h1>路由组件传递参数第一种：props传递参数{{ keyword }}</h1>
   </div>
 </template>
 
@@ -14,7 +17,11 @@
 export default {
 //import引入的组件需要注入到对象中才能使用
   components: {},
-  props: {},
+  props: {
+    keyword: "",
+    a: "",
+    b: ""
+  },
   data() {
 //这里存放数据
     return {};

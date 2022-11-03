@@ -71,6 +71,7 @@ vue-router。
 - 路由组件一般都需要在router文件夹下router.js中进行注册（使用的是组件的名字）
 - 非路由组件都是已标签使用<Header></Header>
 - 注册完路由,不管是路由组件还是非路由组件，身上都有$route｜$router属性
+
 ```javas
 /**
     * $route 一般获取路由信息「路径、query、params等等」
@@ -79,15 +80,18 @@ vue-router。
 ```
 
 ## 3. 路由的跳转
+
 需求：当我在home主页的时候，点击登陆或者注册的时候，就需要跳转到具体的页面。
 
 路由的跳转方式：
+
 1. 声明式导航router-link,可以进行路由的跳转。
-2. 编程式导航。使用$router.push()｜replace()，可以进行路由的跳转。
+2. 编程式导航。使用组件实例的$router.push()｜replace()，可以进行路由的跳转。
 
 声明式导航能做的，编程式导航也能做。但是编程式导航除了可以进行路由的跳转，还可以做一些其他的业务逻辑。比如在登陆的时候，编程式导航可以对用户名和密码进行一些验证。
 
 ## 4.路由元信息的使用
+
 Footer组件的显示与隐藏。显示或者隐藏组件：v-if|v-show
 Footer组件：在Home、Search显示Footer组件
 Footer组件：在登陆、注册时候隐藏
@@ -95,7 +99,32 @@ Footer组件：在登陆、注册时候隐藏
 1. 可以根据组件的$route.path获取当前路由的信息，通过路由信息来判断Footer是显示还是隐藏。但是这种对路由组件过多，不太友好。
 2. 可以利用@route的meta(路由的元信息，K-V)。
 
+## 5. 路由传参
 
+路由的跳转方式？
+
+1. 声明式导航：<router-link to="""></router-link>
+2. 编程式导航：使用组件的实例this.$router.push()|replace()
+
+路由传参，参数有几种方式？
+
+1. params参数：属于路径当中的一部分，需要注意的是，在配置路由的时候，需要占位。
+2. query参数：不属于路径当中的一部分，类似于ajax中的queryString /home?k=v&kv=
+
+需求：在我们home的搜索框，当我们输入"华为"的时候，点击搜索，首先会进行路由的跳转，并把检索的关键字，传递到后端请求接口。
+
+方式：
+
+```vue
+      // 3.1 第一种方式：字符串形式
+      //this.$router.push('/search/' + this.keyword + "?k=" + this.keyword.toUpperCase())
+
+      // 3.2 第二种形式：模版字符串
+      // this.$router.push(`/search/${this.keyword}?k=${this.keyword.toUpperCase()}`)
+
+      // 3.3 第三种形式：对象(常用的)前提需要给路由起一个名字name
+      this.$router.push({name: "search", params: {keyword: this.keyword}, query: {k: this.keyword.toUpperCase()}})
+```
 
 ## Project setup
 
