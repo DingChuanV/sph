@@ -38,6 +38,7 @@ Key：URL（地址栏的路径）。Value:响应的路由组件。
 路由组件：Home首页路由组件、Search路由组件、login登陆路由、register注册路由
 
 非路由组件：
+
 - Header（只是在首页、搜索页出现）
 - Footer（在首页、搜索页有，但是在登陆、注册页面没有）
 
@@ -52,23 +53,62 @@ Key：URL（地址栏的路径）。Value:响应的路由组件。
 - 性能优化
 - 。。。。
 
-## 后续继续完善
+## 1. 路由组件的搭建
+
+vue-router。
+在上面分析的时候，路由组件应该有四个：Home、Search、Login、Register
+
+- components 文件夹 ：经常放置的非路由组件（共用全局组件）
+- pages|views 文件夹：经常放置路由组件
+
+## 2. 配置路由
+
+项目当中配置的路由一般放置在router文件夹中.
+
+- 路由组件与非路由组件的区别
+    - 路由组件一般放在views｜pages 文件夹下
+    - 非路由组件一般都放置在components文件夹下
+- 路由组件一般都需要在router文件夹下router.js中进行注册（使用的是组件的名字）
+- 非路由组件都是已标签使用<Header></Header>
+- 注册完路由,不管是路由组件还是非路由组件，身上都有$route｜$router属性
+```javas
+/**
+    * $route 一般获取路由信息「路径、query、params等等」
+    * $router 一般进行编程式导航路由跳转「push｜replace」
+*/
+```
+
+## 3. 路由的跳转
+需求：当我在home主页的时候，点击登陆或者注册的时候，就需要跳转到具体的页面。
+
+路由的跳转方式：
+1. 声明式导航router-link,可以进行路由的跳转。
+2. 编程式导航。使用push｜replace，可以进行路由的跳转。
+
+声明式导航能做的，编程式导航也能做。但是编程式导航除了可以进行路由的跳转，还可以做一些其他的业务逻辑。比如在登陆的时候，编程式导航可以对用户名和密码进行一些验证。
+
+
+
 
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -2,6 +2,8 @@
   <div>
     <!-- 3. 使用 -->
     <Header></Header>
+    <!-- 3. router--在根组件显示-->
+    <router-view/>
     <Footer></Footer>
   </div>
 </template>

@@ -6,7 +6,13 @@ import store from './store'
 Vue.config.productionTip = false
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    // 2. router--注册路由
+    // 注册路由信息：当这里书写router的时候，组件身上都有$route,$router属性
+    /**
+     * $route 一般获取路由信息「路径、query、params等等」
+     * $router 一般进行编程式导航路由跳转「push｜replace」
+     */
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')

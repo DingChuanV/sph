@@ -6,48 +6,57 @@
   版本：v1.0
 -->
 <template>
-    <!-- 头部 -->
-    <header class="header">
-        <!-- 头部的第一行 -->
-        <div class="top">
-            <div class="container">
-                <div class="loginList">
-                    <p>尚品汇欢迎您！</p>
-                    <p>
-                        <span>请</span>
-                        <a href="###">登录</a>
-                        <a href="###" class="register">免费注册</a>
-                    </p>
-                </div>
-                <div class="typeList">
-                    <a href="###">我的订单</a>
-                    <a href="###">我的购物车</a>
-                    <a href="###">我的尚品汇</a>
-                    <a href="###">尚品汇会员</a>
-                    <a href="###">企业采购</a>
-                    <a href="###">关注尚品汇</a>
-                    <a href="###">合作招商</a>
-                    <a href="###">商家后台</a>
-                </div>
-            </div>
+  <!-- 头部 -->
+  <header class="header">
+    <!-- 头部的第一行 -->
+    <div class="top">
+      <div class="container">
+        <div class="loginList">
+          <p>尚品汇欢迎您！</p>
+          <p>
+            <span>请</span>
+            <!--<a href="###">登录</a>-->
+            <!--声明式导航：务必要有to属性-->
+            <router-link to="/login">登陆</router-link>
+            <!--<a href="###" class="register">免费注册</a>-->
+            <router-link class="register" to="/register">免费注册</router-link>
+          </p>
         </div>
-        <!--头部第二行 搜索区域-->
-        <div class="bottom">
-            <h1 class="logoArea">
-                <a class="logo" title="尚品汇" href="###" target="_blank">
-                    <img src="./images/logo.png" alt="" />
-                </a>
-            </h1>
-            <div class="searchArea">
-                <form action="###" class="searchForm">
-                    <input type="text" id="autocomplete" class="input-error input-xxlarge" />
-                    <button class="sui-btn btn-xlarge btn-danger" type="button">
-                        搜索
-                    </button>
-                </form>
-            </div>
+        <div class="typeList">
+          <a href="###">我的订单</a>
+          <a href="###">我的购物车</a>
+          <a href="###">我的尚品汇</a>
+          <a href="###">尚品汇会员</a>
+          <a href="###">企业采购</a>
+          <a href="###">关注尚品汇</a>
+          <a href="###">合作招商</a>
+          <a href="###">商家后台</a>
         </div>
-    </header>
+      </div>
+    </div>
+    <!--头部第二行 搜索区域-->
+    <div class="bottom">
+      <h1 class="logoArea">
+        <!--当你点击这个logo的时候，也是跳转到首页-->
+        <!--        <a class="logo" title="尚品汇" href="###" target="_blank">-->
+        <!--          <img src="./images/logo.png" alt=""/>-->
+        <!--        </a>-->
+        <!--声明式导航跳转-->
+        <router-link class="logo" to="/home">
+          <img src="./images/logo.png" alt=""/>
+        </router-link>
+      </h1>
+      <div class="searchArea">
+        <form action="###" class="searchForm">
+          <input type="text" id="autocomplete" class="input-error input-xxlarge"/>
+          <!--编程式导航跳转到search页面-->
+          <button class="sui-btn btn-xlarge btn-danger" type="button" @click="goSearch">
+            搜索
+          </button>
+        </form>
+      </div>
+    </div>
+  </header>
 </template>
 
 <script>
@@ -55,126 +64,140 @@
 //例如：import 《组件名称》 from '《组件路径》'
 
 export default {
-    //import引入的组件需要注入到对象中才能使用
-    components: {},
-    props: {},
-    data() {
-        //这里存放数据
-        return {};
-    },
-    //计算属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
-    //方法集合
-    methods: {},
-    //声明周期 - 创建完成（可以访问当前this实例）
-    created() { },
-    //声明周期 - 挂载完成（可以访问DOM元素）
-    mounted() { },
-    beforeCreate() { }, //生命周期 - 创建之前
-    beforeMount() { }, //生命周期 - 挂载之前
-    beforeUpdate() { }, //生命周期 - 更新之前
-    updated() { }, //生命周期 - 更新之后
-    beforeDestroy() { }, //生命周期 - 销毁之前
-    destroyed() { }, //生命周期 - 销毁完成
-    activated() { } //如果页面有keep-alive缓存功能，这个函数会触发
+  //import引入的组件需要注入到对象中才能使用
+  components: {},
+  props: {},
+  data() {
+    //这里存放数据
+    return {};
+  },
+  //计算属性 类似于data概念
+  computed: {},
+  //监控data中的数据变化
+  watch: {},
+  //方法集合
+  methods: {
+    // 搜索按钮的回调函数，路由到search页面
+    goSearch() {
+      this.$router.push('/search')
+    }
+  },
+  //声明周期 - 创建完成（可以访问当前this实例）
+  created() {
+  },
+  //声明周期 - 挂载完成（可以访问DOM元素）
+  mounted() {
+  },
+  beforeCreate() {
+  }, //生命周期 - 创建之前
+  beforeMount() {
+  }, //生命周期 - 挂载之前
+  beforeUpdate() {
+  }, //生命周期 - 更新之前
+  updated() {
+  }, //生命周期 - 更新之后
+  beforeDestroy() {
+  }, //生命周期 - 销毁之前
+  destroyed() {
+  }, //生命周期 - 销毁完成
+  activated() {
+  } //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style scoped lang="less">
 .header {
-    &>.top {
-        background-color: #eaeaea;
-        height: 30px;
-        line-height: 30px;
+  & > .top {
+    background-color: #eaeaea;
+    height: 30px;
+    line-height: 30px;
 
-        .container {
-            width: 1200px;
-            margin: 0 auto;
-            overflow: hidden;
+    .container {
+      width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
 
-            .loginList {
-                float: left;
+      .loginList {
+        float: left;
 
-                p {
-                    float: left;
-                    margin-right: 10px;
+        p {
+          float: left;
+          margin-right: 10px;
 
-                    .register {
-                        border-left: 1px solid #b3aeae;
-                        padding: 0 5px;
-                        margin-left: 5px;
-                    }
-                }
-            }
-
-            .typeList {
-                float: right;
-
-                a {
-                    padding: 0 10px;
-
-                    &+a {
-                        border-left: 1px solid #b3aeae;
-                    }
-                }
-
-            }
-
+          .register {
+            border-left: 1px solid #b3aeae;
+            padding: 0 5px;
+            margin-left: 5px;
+          }
         }
+      }
+
+      .typeList {
+        float: right;
+
+        a {
+          padding: 0 10px;
+
+          & + a {
+            border-left: 1px solid #b3aeae;
+          }
+        }
+
+      }
+
+    }
+  }
+
+  & > .bottom {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+
+    .logoArea {
+      float: left;
+
+      .logo {
+        img {
+          width: 175px;
+          margin: 25px 45px;
+        }
+      }
     }
 
-    &>.bottom {
-        width: 1200px;
-        margin: 0 auto;
+    .searchArea {
+      float: right;
+      margin-top: 35px;
+
+      .searchForm {
         overflow: hidden;
 
-        .logoArea {
-            float: left;
+        input {
+          box-sizing: border-box;
+          width: 490px;
+          height: 32px;
+          padding: 0px 4px;
+          border: 2px solid #ea4a36;
+          float: left;
 
-            .logo {
-                img {
-                    width: 175px;
-                    margin: 25px 45px;
-                }
-            }
+          &:focus {
+            outline: none;
+          }
         }
 
-        .searchArea {
-            float: right;
-            margin-top: 35px;
+        button {
+          height: 32px;
+          width: 68px;
+          background-color: #ea4a36;
+          border: none;
+          color: #fff;
+          float: left;
+          cursor: pointer;
 
-            .searchForm {
-                overflow: hidden;
-
-                input {
-                    box-sizing: border-box;
-                    width: 490px;
-                    height: 32px;
-                    padding: 0px 4px;
-                    border: 2px solid #ea4a36;
-                    float: left;
-
-                    &:focus {
-                        outline: none;
-                    }
-                }
-
-                button {
-                    height: 32px;
-                    width: 68px;
-                    background-color: #ea4a36;
-                    border: none;
-                    color: #fff;
-                    float: left;
-                    cursor: pointer;
-
-                    &:focus {
-                        outline: none;
-                    }
-                }
-            }
+          &:focus {
+            outline: none;
+          }
         }
+      }
     }
+  }
 }
 </style>
