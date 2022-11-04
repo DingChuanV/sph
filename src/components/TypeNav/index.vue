@@ -20,19 +20,19 @@
 
       <div class="sort">
         <div class="all-sort-list2">
-          <div class="item" v-for="(c1,index) in categoryList" :key="c1.index">
+          <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId">
             <h3>
-              <a href="" v-if="c1.categoryName">{{c1.categoryName}}</a>
+              <a href="">{{ c1.categoryName }}</a>
             </h3>
             <div class="item-list clearfix">
-              <div class="subitem" v-for="{c2,idx} in c1.categoryChild" :key="idx">
+              <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categoryId">
                 <dl class="fore">
                   <dt>
-                    <a href="" v-if="c2.categoryName">{{c2.categoryName}}</a>
+                    <a href="">{{ c2.categoryName }}</a>
                   </dt>
                   <dd>
                     <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
-                      <a href="" v-if="c3.categoryName">{{c3.categoryName}}</a>
+                      <a href="">{{ c3.categoryName }}</a>
                     </em>
                   </dd>
                 </dl>
@@ -52,11 +52,11 @@ import {mapState} from 'vuex'
 
 export default {
   name: "TypeNav",
-  //import引入的组件需要注入到对象中才能使用
+//import引入的组件需要注入到对象中才能使用
   components: {},
   props: {},
   data() {
-  //这里存放数据
+//这里存放数据
     return {};
   },
   //计算属性 类似于data概念
@@ -66,12 +66,11 @@ export default {
       // 注入一个参数，state，即为大仓库的数据对象
       // categoryList: state => state.home.categoryList
       categoryList: (state) => {
-        console.log(state.home.categoryList)
         return state.home.categoryList;
       }
     })
   },
-  //监控data中的数据变化
+//监控data中的数据变化
   watch: {},
 //方法集合
   methods: {},
