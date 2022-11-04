@@ -5,7 +5,35 @@
   <!-- 商品分类导航 -->
   <div class="type-nav">
     <div class="container">
-      <h2 class="all">全部商品分类</h2>
+      <!--事件的委派｜事件委托-->
+      <div @mouseleave="leaveIndex">
+        <h2 class="all">全部商品分类</h2>
+        <div class="sort">
+          <div class="all-sort-list2">
+            <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId"
+                 :class="{cur:currentIndex==index}">
+              <h3 @mouseenter="changeIndex(index)">
+                <a href="">{{ c1.categoryName }}</a>
+              </h3>
+              <div class="item-list clearfix">
+                <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categoryId">
+                  <dl class="fore">
+                    <dt>
+                      <a href="">{{ c2.categoryName }}</a>
+                    </dt>
+                    <dd>
+                      <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
+                        <a href="">{{ c3.categoryName }}</a>
+                      </em>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <nav class="nav">
         <a href="###">服装城</a>
@@ -18,29 +46,6 @@
         <a href="###">秒杀</a>
       </nav>
 
-      <div class="sort">
-        <div class="all-sort-list2">
-          <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId">
-            <h3>
-              <a href="">{{ c1.categoryName }}</a>
-            </h3>
-            <div class="item-list clearfix">
-              <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categoryId">
-                <dl class="fore">
-                  <dt>
-                    <a href="">{{ c2.categoryName }}</a>
-                  </dt>
-                  <dd>
-                    <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
-                      <a href="">{{ c3.categoryName }}</a>
-                    </em>
-                  </dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -56,8 +61,11 @@ export default {
   components: {},
   props: {},
   data() {
-//这里存放数据
-    return {};
+    //这里存放数据
+    return {
+      // 存储用户鼠标移上哪一个分类
+      currentIndex: -1
+    };
   },
   //计算属性 类似于data概念
   computed: {
@@ -73,7 +81,17 @@ export default {
 //监控data中的数据变化
   watch: {},
 //方法集合
-  methods: {},
+  methods: {
+    // 鼠标进入一级分类修改响应式数据currentIndex属性
+    changeIndex(index) {
+      // index
+      this.currentIndex = index
+    },
+    // 鼠标离开一级分类修改响应式数据currentIndex属性
+    leaveIndex() {
+      this.currentIndex = -1;
+    }
+  },
   //声明周期 - 创建完成（可以访问当前this实例）
   created() {
   },
@@ -215,6 +233,14 @@ export default {
               display: block;
             }
           }
+        }
+
+        //.item:hover {
+        //  background: skyblue;
+        //}
+
+        .cur {
+          background: skyblue;
         }
       }
     }

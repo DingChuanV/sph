@@ -117,44 +117,52 @@ Footer组件：在登陆、注册时候隐藏
 
 ```vue
       // 3.1 第一种方式：字符串形式
-      //this.$router.push('/search/' + this.keyword + "?k=" + this.keyword.toUpperCase())
+//this.$router.push('/search/' + this.keyword + "?k=" + this.keyword.toUpperCase())
 
-      // 3.2 第二种形式：模版字符串
-      // this.$router.push(`/search/${this.keyword}?k=${this.keyword.toUpperCase()}`)
+// 3.2 第二种形式：模版字符串
+// this.$router.push(`/search/${this.keyword}?k=${this.keyword.toUpperCase()}`)
 
-      // 3.3 第三种形式：对象(常用的)前提需要给路由起一个名字name
-      this.$router.push({name: "search", params: {keyword: this.keyword}, query: {k: this.keyword.toUpperCase()}})
+// 3.3 第三种形式：对象(常用的)前提需要给路由起一个名字name
+this.$router.push({name: "search", params: {keyword: this.keyword}, query: {k: this.keyword.toUpperCase()}})
 ```
 
 ## 6.Home模块的拆分
+
 具体的开发流程
+
 1. 先把静态页面完成
 2. 拆分出静态组件
 3. 获取服务起数据展示
 4. 动态业务
 
 ## 7.axios二次封装
+
 XmlHttpRequest、fetch、JQuery、axios。
 
 - 为什么需要二次封装axios？
- 
+
   主要是为了封装
-  - 请求响应拦截器
-  - 响应响应拦截器
+    - 请求响应拦截器
+    - 响应响应拦截器
 
 ## 8.接口统一管理
+
 项目很小：完全可以在组件的生命周期函数中发送请求
 项目很大：axios.get('xxx')
 
 ## 8.跨域问题
+
 什么是跨域：网络协议、域名、端口其中又一个不同就是跨域请求。
 JSONP、CROS、代理。
- 
+
 ## 9.nprogress进度条的使用
+
 进度条的使用教程：https://madewith.cn/23
+
 ```shell
 npm install --save nprogress
 ```
+
 进度条的使用场景：主要在发起请求进度条显示，服务器响应结束之后进度条隐藏。
 所以进度条就可以在axios的request.js中请求拦截器和响应拦截器中使用。
 
@@ -162,7 +170,9 @@ npm install --save nprogress
 - done 代表进度条消失
 
 ## 10.Vuex状态管理
+
 ### 10.1 Vuex是什么？
+
 Vuex是一个专为vue.js应用程序开发的状态管理模式+库。它采用集中存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化，
 Vuex也集成到Vue的官方调试工具devtools extension。
 
@@ -170,12 +180,16 @@ Vuex也集成到Vue的官方调试工具devtools extension。
 
 每一个Vuex应用的核心就是store（仓库）。"store"基本上就是一个容器，它包含着你的应用中大部分的状态（state）。
 Vuex和单纯的全局对象有以下两点不同：
+
 - Vuex的状态存储是响应式的。当Vue组件从store中读取状态的时候，若store中的状态发生变化，那么相应的组件也会相应地得到高效的更新。
 - 你不能直接改变store中的状态。改变store中的状态唯一的途径就是显式地提交（commit）mutation。这样使得我们可以方便地跟踪每一个状态的变化。
 
 ### 10.2 Vuex基本使用
+
 实现一个自增的计数器
+
 ### 10.3 Vuex实现模块化开发
+
 由于使用单一状态树，应用的所有状态会集中到一个比较大的对象。当应用变得非常复杂时，store 对象就有可能变得相当臃肿。
 为了解决以上的问题，Vuex允许我们将store分割成模块（module）。每个模块都有自己的state、mutations、actions、getters、甚至是嵌套子模块-从上之下进行同样方式切割。
 
@@ -183,6 +197,20 @@ Vuex和单纯的全局对象有以下两点不同：
 
 ## 11.完成TypeNav三级联动展示数据业务
 
+### 11.1 完成一级分类动态添加背景元素
+
+第一种解决方案：采用样式完成（可以）
+
+```css
+.item:hover {
+    background: skyblue;
+}
+```
+第二种解决方案：使用JS
+
+在组件的身上初始化一个currentIndex，随着鼠标的在一级分类上移动，通过监听鼠标的事件获取一级分类的index，使currentIndex == index ,并使用class属性绑定，动态的改变一级分类的背景颜色。
+
+### 11.2 通过JS控制二三级分类显示与隐藏
 
 
 
