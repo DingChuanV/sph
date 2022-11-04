@@ -142,7 +142,29 @@ XmlHttpRequest、fetch、JQuery、axios。
   - 请求响应拦截器
   - 响应响应拦截器
 
-- 在项目中
+## 8.接口统一管理
+项目很小：完全可以在组件的生命周期函数中发送请求
+项目很大：axios.get('xxx')
+
+## 8.跨域问题
+什么是跨域：网络协议、域名、端口其中又一个不同就是跨域请求。
+JSONP、CROS、代理。
+ 
+## 9.nprogress进度条的使用
+进度条的使用教程：https://madewith.cn/23
+```shell
+npm install --save nprogress
+```
+进度条的使用场景：主要在发起请求进度条显示，服务器响应结束之后进度条隐藏。
+所以进度条就可以在axios的request.js中请求拦截器和响应拦截器中使用。
+
+- start 代表进度条开始
+- done 代表进度条消失
+
+## 10.Vuex状态管理
+Vuex是一个专为vue.js应用程序开发的状态管理模式+库。它采用集中存储管理应用的所有组件
+
+
 
 
 
