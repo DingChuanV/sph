@@ -9,22 +9,32 @@
       <div @mouseleave="leaveIndex">
         <h2 class="all">全部商品分类</h2>
         <div class="sort">
-          <div class="all-sort-list2">
+          <!--事件的委派，只循环一次-->
+          <!--利用事件的委派+编程式导航实现路由的跳转和路由之间传递参数-->
+          <div class="all-sort-list2" @click="goSearch">
             <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId"
                  :class="{cur:currentIndex==index}">
               <h3 @mouseenter="changeIndex(index)">
-                <a href="">{{ c1.categoryName }}</a>
+                <!--:data-categoryName="c1.categoryName" 自定义属性-->
+                <!--:data-category1Id="c1.categoryId" 自定义属性，使用事件委托，解构出三级联动的ID-->
+                <span :data-categoryName="c1.categoryName" :data-category1Id="c1.categoryId">{{ c1.categoryName }}</span>
+                <!--<router-link to="/search">{{ c1.categoryName }}</router-link>-->
               </h3>
               <!--二三级分类-->
               <div class="item-list clearfix" :style="{display:currentIndex==index?'block':'none'}">
                 <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categoryId">
                   <dl class="fore">
                     <dt>
-                      <a href="">{{ c2.categoryName }}</a>
+                      <span :data-categoryName="c2.categoryName" :data-category2Id="c2.categoryId">{{
+                          c2.categoryName
+                        }}</span>
+                      <!--                      <router-link to="/search">{{ c2.categoryName }}</router-link>-->
                     </dt>
                     <dd>
                       <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
-                        <a href="">{{ c3.categoryName }}</a>
+                        <span :data-categoryName="c3.categoryName" :data-category3Id="c3.categoryId">{{
+                            c3.categoryName
+                          }}</span>
                       </em>
                     </dd>
                   </dl>
@@ -91,11 +101,36 @@ export default {
     // },
     changeIndex: throttle(function (index) {
       this.currentIndex = index
-    }, 50)
-    ,
+    }, 50),
     // 鼠标离开一级分类修改响应式数据currentIndex属性
     leaveIndex() {
       this.currentIndex = -1;
+    },
+    goSearch(event) {
+      // 路由跳转最好的解决方案就是：编程式导航+事件委派
+      // 如果利用事件委托，就会存在在委托的对象不清晰和如何获取路由的参数
+      // 1.给子节点中的a标签，自定义属性
+      // 2.使用event事件对象，可以获取到当前的点击对象的标签，只要有我们的自定义属性（小写）就知道
+      // 3.节点有一个属性dataset，可以获取到参数
+      // 解构对象
+      let {categoryname, category1id, category2id, category3id} = event.target.dataset
+      // 如果标签（解构出来的对象）存在categoryname，就说明它是a标签
+      if (categoryname) {
+        let location = {name: "search"}
+        let query = {categoryName: categoryname}
+        // 4.你怎么知道是一级分类还是二级分类的问题
+        if (category1id) {
+          query.category1Id = category1id
+        } else if (category2id) {
+          query.category2Id = category2id
+        } else if (category3id) {
+          query.category3Id = category3id
+        }
+        // 整理参数
+        location.query = query
+        // 路由跳转
+        this.$router.push(location)
+      }
     }
   },
   //声明周期 - 创建完成（可以访问当前this实例）
