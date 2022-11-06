@@ -55,6 +55,7 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》'
 import {mapState} from 'vuex'
+import throttle from 'lodash/throttle'
 
 export default {
   name: "TypeNav",
@@ -84,10 +85,14 @@ export default {
 //方法集合
   methods: {
     // 鼠标进入一级分类修改响应式数据currentIndex属性
-    changeIndex(index) {
-      // index
+    // changeIndex(index) {
+    //   // index
+    //   this.currentIndex = index
+    // },
+    changeIndex: throttle(function (index) {
       this.currentIndex = index
-    },
+    }, 50)
+    ,
     // 鼠标离开一级分类修改响应式数据currentIndex属性
     leaveIndex() {
       this.currentIndex = -1;

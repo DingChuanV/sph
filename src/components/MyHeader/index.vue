@@ -93,7 +93,13 @@ export default {
       // this.$router.push(`/search/${this.keyword}?k=${this.keyword.toUpperCase()}`)
 
       // 3.3 第三种形式：对象(常用的)前提需要给路由起一个名字name
-      this.$router.push({name: "search", params: {keyword: this.keyword},query: {k: this.keyword.toUpperCase()}}, () => {}, () => {})
+      this.$router.push({
+        name: "search",
+        params: {keyword: this.keyword},
+        query: {k: this.keyword.toUpperCase()}
+      }, () => {
+      }, () => {
+      })
 
       // 4.1 如何指定params参数可传可不传,如何解决？
       // this.$router.push({name: "search", query: {k: this.keyword.toUpperCase()}})
