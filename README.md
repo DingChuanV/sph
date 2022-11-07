@@ -281,6 +281,13 @@ console.log(JSON.stringify(data, null, 4))
 4. 通过mockServe.js模块实现虚拟数据
 5. 把mockServe.js文件在入口文件中引入（main.js）
 
+## 19.Banner实现轮播图
+1. 引包（相应JS｜CSS）
+2. 页面中的结构务必要有
+3. new Swiper实例「轮播图添加动态效果」
+
+
+
 
 
 

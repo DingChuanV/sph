@@ -12,15 +12,6 @@
             <div class="swiper-slide">
               <img src="./images/banner1.jpg"/>
             </div>
-<!--            <div class="swiper-slide">-->
-<!--              <img src="./images/banner2.jpg"/>-->
-<!--            </div>-->
-<!--            <div class="swiper-slide">-->
-<!--              <img src="./images/banner3.jpg"/>-->
-<!--            </div>-->
-<!--            <div class="swiper-slide">-->
-<!--              <img src="./images/banner4.jpg"/>-->
-<!--            </div>-->
           </div>
           <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
@@ -116,6 +107,8 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》'
+import {mapState} from "vuex";
+
 
 export default {
 //import引入的组件需要注入到对象中才能使用
@@ -126,7 +119,13 @@ export default {
     return {};
   },
 //计算属性 类似于data概念
-  computed: {},
+  computed: {
+    ...mapState({
+      getBannerList: (state) => {
+        return state.home.getBannerList
+      }
+    })
+  },
 //监控data中的数据变化
   watch: {},
 //方法集合
@@ -136,6 +135,8 @@ export default {
   },
 //声明周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    //派发action，通过Vuex发起ajax请求，将数据存储在仓库中
+    this.$store.dispatch('getBannerList')
   },
   beforeCreate() {
   }, //生命周期 - 创建之前
