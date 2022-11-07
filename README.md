@@ -248,7 +248,19 @@ Vuex和单纯的全局对象有以下两点不同：
 
 ## 16.对typeNav商品分类列表的优化
 由于在Home主页和Search主页引入了TypeNav组件，每次页面之前的跳转，typeNav都会去请求三级分类的数据。
-为了减轻对服务器的压力，选择在app.vue中的mounted函数，只执行一次请求，就会将数据放在home的仓库。
+为了减轻对服务器的压力，选择在app.vue根组件中的mounted函数，只执行一次请求，就会将数据放在home的仓库。
+
+## 17.合并参数
+### 17.1 合并param与query参数 
+
+
+
+
+
+
+
+
+
 
 ## Project setup
 
