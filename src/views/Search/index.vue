@@ -3,10 +3,11 @@
 -->
 <template>
   <div>
-    <h1>param参数{{ $route.params.keyword }}</h1>
-    <h1>query参数{{ $route.query.k }}</h1>
-    <!--路由组件props传递参数,只能是params参数形式-->
-    <h1>路由组件传递参数第一种：props传递参数{{ keyword }}</h1>
+<!--    <h1>param参数{{ $route.params.keyword }}</h1>-->
+<!--    <h1>query参数{{ $route.query.k }}</h1>-->
+<!--    &lt;!&ndash;路由组件props传递参数,只能是params参数形式&ndash;&gt;-->
+<!--    <h1>路由组件传递参数第一种：props传递参数{{ keyword }}</h1>-->
+    <TypeNav></TypeNav>
   </div>
 </template>
 

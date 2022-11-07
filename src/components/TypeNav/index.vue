@@ -6,45 +6,49 @@
   <div class="type-nav">
     <div class="container">
       <!--事件的委派｜事件委托-->
-      <div @mouseleave="leaveIndex">
+      <div @mouseleave="leaveIndex" @mouseenter="enterShow">
         <h2 class="all">全部商品分类</h2>
-        <div class="sort">
-          <!--事件的委派，只循环一次-->
-          <!--利用事件的委派+编程式导航实现路由的跳转和路由之间传递参数-->
-          <div class="all-sort-list2" @click="goSearch">
-            <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId"
-                 :class="{cur:currentIndex==index}">
-              <h3 @mouseenter="changeIndex(index)">
-                <!--:data-categoryName="c1.categoryName" 自定义属性-->
-                <!--:data-category1Id="c1.categoryId" 自定义属性，使用事件委托，解构出三级联动的ID-->
-                <span :data-categoryName="c1.categoryName" :data-category1Id="c1.categoryId">{{ c1.categoryName }}</span>
-                <!--<router-link to="/search">{{ c1.categoryName }}</router-link>-->
-              </h3>
-              <!--二三级分类-->
-              <div class="item-list clearfix" :style="{display:currentIndex==index?'block':'none'}">
-                <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categoryId">
-                  <dl class="fore">
-                    <dt>
+        <!--过渡动画-->
+        <transition name="sort">
+          <div class="sort" v-show="show">
+            <!--事件的委派，只循环一次-->
+            <!--利用事件的委派+编程式导航实现路由的跳转和路由之间传递参数-->
+            <div class="all-sort-list2" @click="goSearch">
+              <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId"
+                   :class="{cur:currentIndex==index}">
+                <h3 @mouseenter="changeIndex(index)">
+                  <!--:data-categoryName="c1.categoryName" 自定义属性-->
+                  <!--:data-category1Id="c1.categoryId" 自定义属性，使用事件委托，解构出三级联动的ID-->
+                  <span :data-categoryName="c1.categoryName" :data-category1Id="c1.categoryId">{{
+                      c1.categoryName
+                    }}</span>
+                  <!--<router-link to="/search">{{ c1.categoryName }}</router-link>-->
+                </h3>
+                <!--二三级分类-->
+                <div class="item-list clearfix" :style="{display:currentIndex==index?'block':'none'}">
+                  <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categoryId">
+                    <dl class="fore">
+                      <dt>
                       <span :data-categoryName="c2.categoryName" :data-category2Id="c2.categoryId">{{
                           c2.categoryName
                         }}</span>
-                      <!--                      <router-link to="/search">{{ c2.categoryName }}</router-link>-->
-                    </dt>
-                    <dd>
-                      <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
+                        <!--                      <router-link to="/search">{{ c2.categoryName }}</router-link>-->
+                      </dt>
+                      <dd>
+                        <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
                         <span :data-categoryName="c3.categoryName" :data-category3Id="c3.categoryId">{{
                             c3.categoryName
                           }}</span>
-                      </em>
-                    </dd>
-                  </dl>
+                        </em>
+                      </dd>
+                    </dl>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </transition>
       </div>
-
 
       <nav class="nav">
         <a href="###">服装城</a>
@@ -76,7 +80,8 @@ export default {
     //这里存放数据
     return {
       // 存储用户鼠标移上哪一个分类
-      currentIndex: -1
+      currentIndex: -1,
+      show: true
     };
   },
   //计算属性 类似于data概念
@@ -105,6 +110,9 @@ export default {
     // 鼠标离开一级分类修改响应式数据currentIndex属性
     leaveIndex() {
       this.currentIndex = -1;
+      if (this.$route.path != '/home') {
+        this.show = false
+      }
     },
     goSearch(event) {
       // 路由跳转最好的解决方案就是：编程式导航+事件委派
@@ -131,6 +139,12 @@ export default {
         // 路由跳转
         this.$router.push(location)
       }
+    },
+    // 当鼠标移入的时候，让商品分类展示
+    enterShow() {
+      if (this.$route.path != '/home') {
+        this.show = true
+      }
     }
   },
   //声明周期 - 创建完成（可以访问当前this实例）
@@ -142,6 +156,10 @@ export default {
   mounted() {
     // 通知Vuex发送请求，获取数据，存储于仓库
     this.$store.dispatch('categoryList')
+    // 当组件挂载成功
+    if (this.$route.path != '/home') {
+      this.show = false
+    }
   },
   beforeCreate() {
   }, //生命周期 - 创建之前
@@ -284,6 +302,24 @@ export default {
           background: skyblue;
         }
       }
+    }
+
+    //过渡动画的样式
+    // 过渡动画的开始时间
+    .sort-enter {
+      height: 0px;
+      //transform: rotate(0deg);
+    }
+
+    //过渡动画的结束时间
+    .sort-enter-to {
+      height: 461px;
+      //transform: rotate(360deg);
+    }
+
+    //定义动画的时间、速率
+    .sort-enter-active {
+      transition: all .5s linear;
     }
   }
 }
