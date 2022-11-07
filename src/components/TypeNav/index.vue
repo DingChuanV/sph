@@ -155,7 +155,7 @@ export default {
   // 可以向服务起发起请求
   mounted() {
     // 通知Vuex发送请求，获取数据，存储于仓库
-    this.$store.dispatch('categoryList')
+    // this.$store.dispatch('categoryList')
     // 当组件挂载成功
     if (this.$route.path != '/home') {
       this.show = false

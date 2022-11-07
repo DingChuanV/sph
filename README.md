@@ -246,7 +246,9 @@ Vuex和单纯的全局对象有以下两点不同：
 使用v-show使组件元素显示或隐藏。
 过滤动画：前提组件｜元素务必要有v-if和v-show指令才可以进行过度动画。
 
-
+## 16.对typeNav商品分类列表的优化
+由于在Home主页和Search主页引入了TypeNav组件，每次页面之前的跳转，typeNav都会去请求三级分类的数据。
+为了减轻对服务器的压力，选择在app.vue中的mounted函数，只执行一次请求，就会将数据放在home的仓库。
 
 ## Project setup
 
