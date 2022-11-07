@@ -6,12 +6,15 @@ import store from './store'
 
 // 三级联动组件--全局组件
 import TypeNav from "@/components/TypeNav";
+
 Vue.component(TypeNav.name, TypeNav)
 
 Vue.config.productionTip = false
 //测试
-import {reqCategoryList} from '@/api'
-reqCategoryList()
+// import {reqCategoryList} from '@/api'
+// reqCategoryList()
+// 引入MockServe.js--mock数据
+import '@/mock/mockServe'
 
 new Vue({
     // 2. router--注册路由

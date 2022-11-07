@@ -253,7 +253,33 @@ Vuex和单纯的全局对象有以下两点不同：
 ## 17.合并参数
 ### 17.1 合并param与query参数 
 
+## 18.开发Home中的listContainer组件与Floor组件？
+mock模拟数据
 
+```shell
+# 安装
+npm install mockjs
+```
+
+```vue
+// 使用 Mock
+var Mock = require('mockjs')
+var data = Mock.mock({
+    // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+    'list|1-10': [{
+        // 属性 id 是一个自增数，起始值为 1，每次增 1
+        'id|+1': 1
+    }]
+})
+// 输出结果
+console.log(JSON.stringify(data, null, 4))
+```
+使用步骤：
+1. 在项目当中的src文件夹下创建mock目录
+2. 第二步准备JSON数据
+3. 把mock数据需要的图片放置到public文件夹下面「public文件夹在打包的时候，会把相应的资源原封不动的打包在dist文件夹下」
+4. 通过mockServe.js模块实现虚拟数据
+5. 把mockServe.js文件在入口文件中引入（main.js）
 
 
 
