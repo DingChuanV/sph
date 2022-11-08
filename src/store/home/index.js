@@ -1,10 +1,11 @@
-import {reqCategoryList, reqGetBannerList} from '@/api'
+import {reqCategoryList, reqGetBannerList, reqGetFloorList} from '@/api'
 
 //home 模块的小仓库
 const state = {
     // state 中数据默认初始值别瞎写，服务器返回的是对象，起始值就是对象
     categoryList: [],
-    bannerList: []
+    bannerList: [],
+    floorList: []
 };
 const mutations = {
     CATEGORY(state, categoryList) {
@@ -13,6 +14,9 @@ const mutations = {
     BANNER(state, getBannerList) {
         console.log("修改仓库中的数据")
         state.bannerList = getBannerList
+    },
+    FLOOR(state, getFloorList) {
+        state.floorList = getFloorList
     }
 };
 const actions = {
@@ -30,8 +34,18 @@ const actions = {
         if (result.code == 200) {
             commit("BANNER", result.data)
         }
+    },
+    // 获取楼层数据
+    async getFloorList({commit}) {
+        let result = await reqGetFloorList();
+        if (result.code == 200) {
+            commit("FLOOR", result.data)
+        }
     }
+
 };
+
+//计算属性
 const getters = {};
 
 export default {

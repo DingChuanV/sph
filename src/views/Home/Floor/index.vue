@@ -53,12 +53,6 @@
                   <div class="swiper-slide">
                     <img src="./images/floor-1-b01.png"/>
                   </div>
-<!--                  <div class="swiper-slide">-->
-<!--                    <img src="./images/floor-1-b02.png"/>-->
-<!--                  </div>-->
-<!--                  <div class="swiper-slide">-->
-<!--                    <img src="./images/floor-1-b03.png"/>-->
-<!--                  </div>-->
                 </div>
                 <!-- 如果需要分页器 -->
                 <div class="swiper-pagination"></div>
@@ -103,7 +97,7 @@
 export default {
 //import引入的组件需要注入到对象中才能使用
   components: {},
-  props: {},
+  props: ['list'],
   data() {
 //这里存放数据
     return {};
@@ -119,6 +113,7 @@ export default {
   },
 //声明周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+
   },
   beforeCreate() {
   }, //生命周期 - 创建之前

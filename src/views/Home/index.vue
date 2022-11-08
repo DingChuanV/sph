@@ -4,18 +4,19 @@
 <template>
   <div>
     <!--三级联动--已经注册为全局组件，不需要引入-->
-        <TypeNav></TypeNav>
-        <list-container></list-container>
-        <Recommend></Recommend>
-        <Rank></Rank>
-        <Like></Like>
-        <Floor></Floor>
-        <Brand></Brand>
+    <TypeNav></TypeNav>
+    <list-container></list-container>
+    <Recommend></Recommend>
+    <Rank></Rank>
+    <Like></Like>
+    <!--:list="floor" 父组件给子组件传输数据-->
+    <Floor v-for="(floor,index) in floorList" :key="floor.id" :list="floor"></Floor>
+    <Brand></Brand>
 
     <!--1.测试Vuex状态管理-->
-<!--    <button @click="add">+1</button>-->
-<!--    <span>state仓库中的数据{{count}}</span>-->
-<!--    <button @click="del">-1</button>-->
+    <!--    <button @click="add">+1</button>-->
+    <!--    <span>state仓库中的数据{{count}}</span>-->
+    <!--    <button @click="del">-1</button>-->
 
   </div>
 </template>
@@ -31,6 +32,8 @@ import Floor from "@/views/Home/Floor";
 import Brand from "@/views/Home/Brand";
 // <!--2.测试Vuex状态管理-->
 // import {mapState} from 'vuex';
+import {mapState} from "vuex";
+
 
 export default {
 //import引入的组件需要注入到对象中才能使用
@@ -52,6 +55,11 @@ export default {
   computed: {
     // <!--3.测试Vuex状态管理-->
     // ...mapState(['count'])
+    ...mapState({
+      floorList: (state) => {
+        return state.home.floorList
+      }
+    })
   },
 //监控data中的数据变化
   watch: {},
@@ -71,6 +79,7 @@ export default {
   },
 //声明周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    this.$store.dispatch("getFloorList")
   },
   beforeCreate() {
   }, //生命周期 - 创建之前
