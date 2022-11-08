@@ -8,19 +8,20 @@
       <div class="center">
         <!--banner轮播-->
         <!--ref 被用来给元素或子组件注册引用信息-->
-        <div class="swiper-container" ref="mySwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(carousel,index) in bannerList" :key="carousel.id">
-              <img :src="carousel.imgUrl"/>
-            </div>
-          </div>
-          <!-- 如果需要分页器 -->
-          <div class="swiper-pagination"></div>
+<!--        <div class="swiper-container" ref="mySwiper">-->
+<!--          <div class="swiper-wrapper">-->
+<!--            <div class="swiper-slide" v-for="(carousel,index) in bannerList" :key="carousel.id">-->
+<!--              <img :src="carousel.imgUrl"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; 如果需要分页器 &ndash;&gt;-->
+<!--          <div class="swiper-pagination"></div>-->
 
-          <!-- 如果需要导航按钮 -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-        </div>
+<!--          &lt;!&ndash; 如果需要导航按钮 &ndash;&gt;-->
+<!--          <div class="swiper-button-prev"></div>-->
+<!--          <div class="swiper-button-next"></div>-->
+<!--        </div>-->
+        <carousel :list="bannerList"></carousel>
       </div>
       <div class="right">
         <div class="news">
@@ -109,7 +110,6 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》'
 import {mapState} from "vuex";
-import Swiper from "swiper"
 
 export default {
 //import引入的组件需要注入到对象中才能使用
@@ -133,29 +133,31 @@ export default {
     // bannerList:function (newVal,oldVal){
     //
     // },
+
     // 对象值写法
-    bannerList: {
-      // 现在咱们通过watch监听bannerlist属性值的变化
-      // 如果执行handler方法，代表组件实例身上这个属性已经有了
-      // nextTick:在下次DOM更新 循环结束之后 执行延迟回调。在 修改数据之后 立即使用这个方法,获取更新后的DOM。
-      handler(newVal, oldVal) {
-        // 当你执行nextTick回调的时候，已经保证组件的结构都有了
-        this.$nextTick(() => {
-          // document.querySelector(".swiper-container")
-          let mySwiper = new Swiper(this.$refs.mySwiper, {
-            loop: true,
-            pagination: {
-              el: ".swiper-pagination",
-              clickable: true
-            },
-            navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev"
-            },
-          })
-        })
-      }
-    }
+    // bannerList: {
+    //   immediate: true,
+    //   // 现在咱们通过watch监听bannerlist属性值的变化
+    //   // 如果执行handler方法，代表组件实例身上这个属性已经有了
+    //   // nextTick:在下次DOM更新 循环结束之后 执行延迟回调。在 修改数据之后 立即使用这个方法,获取更新后的DOM。
+    //   handler(newVal, oldVal) {
+    //     // 当你执行nextTick回调的时候，已经保证组件的结构都有了
+    //     this.$nextTick(() => {
+    //       // document.querySelector(".swiper-container")
+    //       let mySwiper = new Swiper(this.$refs.mySwiper, {
+    //         loop: true,
+    //         pagination: {
+    //           el: ".swiper-pagination",
+    //           clickable: true
+    //         },
+    //         navigation: {
+    //           nextEl: ".swiper-button-next",
+    //           prevEl: ".swiper-button-prev"
+    //         },
+    //       })
+    //     })
+    //   }
+    // }
   },
 //方法集合
   methods: {},

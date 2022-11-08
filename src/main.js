@@ -6,9 +6,10 @@ import store from './store'
 
 // 三级联动组件--全局组件
 import TypeNav from "@/components/TypeNav";
+import Carousel from "@/components/Carousel";
 
 Vue.component(TypeNav.name, TypeNav)
-
+Vue.component(Carousel.name, Carousel)
 Vue.config.productionTip = false
 //测试
 // import {reqCategoryList} from '@/api'
