@@ -9,8 +9,8 @@
         <!--banner轮播-->
         <div class="swiper-container" id="mySwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="./images/banner1.jpg"/>
+            <div class="swiper-slide" v-for="(carousel,index) in bannerList" :key="carousel.id">
+              <img :src="carousel.imgUrl"/>
             </div>
           </div>
           <!-- 如果需要分页器 -->
@@ -108,7 +108,7 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》'
 import {mapState} from "vuex";
-
+import Swiper from "swiper"
 
 export default {
 //import引入的组件需要注入到对象中才能使用
@@ -121,13 +121,40 @@ export default {
 //计算属性 类似于data概念
   computed: {
     ...mapState({
-      getBannerList: (state) => {
-        return state.home.getBannerList
+      bannerList: (state) => {
+        return state.home.bannerList
       }
     })
   },
-//监控data中的数据变化
-  watch: {},
+  //监控data中的数据变化 侦听器
+  watch: {
+    // 监听bannerList数据的变化，因为这条数据发生过变化----由空数组变为有数据的数组
+    // bannerList:function (newVal,oldVal){
+    //
+    // },
+    // 对象值写法
+    bannerList: {
+      // 现在咱们通过watch监听bannerlist属性值的变化
+      // 如果执行handler方法，代表组件实例身上这个属性已经有了
+      // nextTick:在下次DOM更新 循环结束之后 执行延迟回调。在 修改数据之后 立即使用这个方法,获取更新后的DOM。
+      handler(newVal, oldVal) {
+        // 当你执行nextTick回调的时候，已经保证组件的结构都有了
+        this.$nextTick(() => {
+          let mySwiper = new Swiper(document.querySelector(".swiper-container"), {
+            loop: true,
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev"
+            },
+          })
+        })
+      }
+    }
+  },
 //方法集合
   methods: {},
 //声明周期 - 创建完成（可以访问当前this实例）
@@ -135,8 +162,25 @@ export default {
   },
 //声明周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    console.log("我是mounted")
     //派发action，通过Vuex发起ajax请求，将数据存储在仓库中
     this.$store.dispatch('getBannerList')
+    // 为什么swiper直接在mounted函数中书写不可以：因为组件的结构还没有完全完整。
+    console.log("要初始化swiper")
+    // new Swiper实例
+    // setTimeout(() => {
+    //   var mySwiper = new Swiper(document.querySelector(".swiper-container"), {
+    //     loop: true,
+    //     pagination: {
+    //       el: ".swiper-pagination",
+    //       clickable: true
+    //     },
+    //     navigation: {
+    //       nextEl: ".swiper-button-next",
+    //       prevEl: ".swiper-button-prev"
+    //     },
+    //   })
+    // }, 1000)
   },
   beforeCreate() {
   }, //生命周期 - 创建之前

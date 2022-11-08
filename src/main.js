@@ -15,6 +15,7 @@ Vue.config.productionTip = false
 // reqCategoryList()
 // 引入MockServe.js--mock数据
 import '@/mock/mockServe'
+import "swiper/css/swiper.css";
 
 new Vue({
     // 2. router--注册路由
