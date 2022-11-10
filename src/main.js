@@ -18,7 +18,6 @@ Vue.config.productionTip = false
 import '@/mock/mockServe'
 import "swiper/css/swiper.css";
 
-
 new Vue({
     // 2. router--注册路由
     // 注册路由信息：当这里书写router的时候，组件身上都有$route,$router属性

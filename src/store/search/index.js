@@ -2,24 +2,38 @@
 import {reqGetSearchInfo} from "@/api";
 
 const state = {
+    // 仓库初始状态
     searchlist: {}
 };
 const mutations = {
-    SEARINFO(state, getSearchInfo) {
-        state.searchlist = getSearchInfo;
+    SEARCHLIST(state, getSearchInfo) {
+        state.searchlist = getSearchInfo
     }
 };
 const actions = {
     // 获取search模块数据
     async getSearchInfo({commit}, params = {}) {
         let result = await reqGetSearchInfo(params)
-        console.log(result.data)
+        console.log(result)
         if (result.code == 200) {
-            commit('SEARINFO', result.data)
+            commit('SEARCHLIST', result.data)
         }
     }
 };
-const getters = {};
+// 计算属性
+const getters = {
+    // 在项目中getters主要的作用，简化操作仓库中的数据。
+    // 当前形参state并不是大仓库中的state
+    goodsList(state) {
+        return state.searchlist.goodsList || []
+    },
+    trademarkList(state) {
+        return state.searchlist.trademarkList || []
+    },
+    attrsList(state) {
+        return state.searchlist.attrsList || []
+    }
+};
 
 export default {
     state,
