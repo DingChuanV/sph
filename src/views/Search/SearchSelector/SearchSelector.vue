@@ -7,24 +7,7 @@
       <div class="fl key brand">品牌</div>
       <div class="value logos">
         <ul class="logo-list">
-          <li>索尼（SONY）</li>
-          <li>TCL</li>
-          <li>长虹（CHANGHONG）</li>
-          <li>飞利浦（PHILIPS）</li>
-          <li>风行电视</li>
-          <li><img src="./images/phone06.png"/></li>
-          <li><img src="./images/phone07.png"/></li>
-          <li><img src="./images/phone08.png"/></li>
-          <li><img src="./images/phone09.png"/></li>
-          <li><img src="./images/phone10.png"/></li>
-          <li><img src="./images/phone11.png"/></li>
-          <li><img src="./images/phone12.png"/></li>
-          <li><img src="./images/phone12.png"/></li>
-          <li><img src="./images/phone14.png"/></li>
-          <li><img src="./images/phone01.png"/></li>
-          <li><img src="./images/phone06.png"/></li>
-          <li><img src="./images/phone07.png"/></li>
-          <li><img src="./images/phone02.png"/></li>
+          <li v-for="(trademark,index) in trademarkList" :key="trademark.tmId">{{trademark.tmName}}</li>
         </ul>
       </div>
       <div class="ext">
@@ -32,39 +15,12 @@
         <a href="javascript:void(0);">更多</a>
       </div>
     </div>
-    <div class="type-wrap">
-      <div class="fl key">网络制式</div>
+    <div class="type-wrap" v-for="(attr,index) in attrsList" :key="attr.attrId">
+      <div class="fl key">{{attr.attrName}}</div>
       <div class="fl value">
-        <ul class="type-list">
-          <li>
-            <a>GSM（移动/联通2G）</a>
-          </li>
-          <li>
-            <a>电信2G</a>
-          </li>
-          <li>
-            <a>电信3G</a>
-          </li>
-          <li>
-            <a>移动3G</a>
-          </li>
-          <li>
-            <a>联通3G</a>
-          </li>
-          <li>
-            <a>联通4G</a>
-          </li>
-          <li>
-            <a>电信3G</a>
-          </li>
-          <li>
-            <a>移动3G</a>
-          </li>
-          <li>
-            <a>联通3G</a>
-          </li>
-          <li>
-            <a>联通4G</a>
+        <ul class="type-list" >
+          <li v-for="(attrValue,index) in attr.attrValueList" :key="index">
+            <a>{{attrValue}}</a>
           </li>
         </ul>
       </div>
@@ -164,18 +120,23 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》'
+import {mapGetters} from "vuex";
 
 export default {
 //import引入的组件需要注入到对象中才能使用
   name: 'SearchSelector',
-  components: {},
+  components: {
+
+  },
   props: {},
   data() {
 //这里存放数据
     return {};
   },
 //计算属性 类似于data概念
-  computed: {},
+  computed: {
+    ...mapGetters(['goodsList','trademarkList','attrsList'])
+  },
 //监控data中的数据变化
   watch: {},
 //方法集合
