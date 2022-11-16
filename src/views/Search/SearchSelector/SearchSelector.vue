@@ -7,7 +7,7 @@
       <div class="fl key brand">品牌</div>
       <div class="value logos">
         <ul class="logo-list">
-          <li v-for="(trademark,index) in trademarkList" :key="trademark.tmId">{{trademark.tmName}}</li>
+          <li v-for="(trademark,index) in trademarkList" :key="trademark.tmId">{{ trademark.tmName }}</li>
         </ul>
       </div>
       <div class="ext">
@@ -16,11 +16,11 @@
       </div>
     </div>
     <div class="type-wrap" v-for="(attr,index) in attrsList" :key="attr.attrId">
-      <div class="fl key">{{attr.attrName}}</div>
+      <div class="fl key">{{ attr.attrName }}</div>
       <div class="fl value">
-        <ul class="type-list" >
+        <ul class="type-list">
           <li v-for="(attrValue,index) in attr.attrValueList" :key="index">
-            <a>{{attrValue}}</a>
+            <a>{{ attrValue }}</a>
           </li>
         </ul>
       </div>
@@ -125,9 +125,7 @@ import {mapGetters} from "vuex";
 export default {
 //import引入的组件需要注入到对象中才能使用
   name: 'SearchSelector',
-  components: {
-
-  },
+  components: {},
   props: {},
   data() {
 //这里存放数据
@@ -135,7 +133,7 @@ export default {
   },
 //计算属性 类似于data概念
   computed: {
-    ...mapGetters(['goodsList','trademarkList','attrsList'])
+    ...mapGetters(['goodsList', 'trademarkList', 'attrsList'])
   },
 //监控data中的数据变化
   watch: {},
