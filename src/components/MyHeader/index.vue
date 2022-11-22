@@ -131,6 +131,10 @@ export default {
   },
   //声明周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    // 通过全局事件总线 清除关键字
+    this.$bus.$on("clear", () => {
+      this.keyword = ''
+    })
   },
   beforeCreate() {
   }, //生命周期 - 创建之前
@@ -185,9 +189,7 @@ export default {
             border-left: 1px solid #b3aeae;
           }
         }
-
       }
-
     }
   }
 
