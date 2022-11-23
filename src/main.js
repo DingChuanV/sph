@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 //引入仓库
 import store from './store'
 
@@ -11,6 +13,8 @@ import Carousel from "@/components/Carousel";
 Vue.component(TypeNav.name, TypeNav)
 Vue.component(Carousel.name, Carousel)
 Vue.config.productionTip = false
+
+Vue.use(ElementUI);
 //测试
 // import {reqCategoryList} from '@/api'
 // reqCategoryList()
