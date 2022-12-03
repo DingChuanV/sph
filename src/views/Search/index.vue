@@ -49,12 +49,12 @@
                 <!--                </li>-->
 
                 <li :class="{active:isOne}">
-                  <a href="#">综合<span v-show="isOne" class="el-icon-top"
+                  <a href="#">综合<span v-show="isOne" @click="changeOrder('1')" class="el-icon-top"
                                         :class="{'el-icon-top':isAsc,'el-icon-bottom':isDesc}"></span></a>
                 </li>
                 <li :class="{active:isTwo}">
                   <!--↓↑-->
-                  <a href="#">价格<span v-show="isTwo" class="el-icon-top"
+                  <a href="#">价格<span v-show="isTwo" @click="changeOrder('2')" class="el-icon-top"
                                         :class="{'el-icon-top':isAsc,'el-icon-bottom':isDesc}"></span></a>
                 </li>
               </ul>
@@ -249,6 +249,23 @@ export default {
     },
     removeAttr(index) {
       this.searchParams.props.splice(index, 1)
+      this.getData()
+    },
+    // 排序的操作
+    changeOrder(flag) {
+      // flag 形参：它是一个标记，代表用户点击的是综合(1)价格（2）[用户点击的时候传递进来的]
+      let originOrder = this.searchParams.order;
+      let originFlag = this.searchParams.order.split(":")[0];
+      let originSort = this.searchParams.order.split(":")[1];
+      // 准备一个新的order属性值
+      let newOrder = ''
+
+      if (flag == originFlag) {
+        newOrder = `${originFlag}:${originSort == "desc" ? "asc" : "desc"}`;
+      } else {
+        newOrder = `${flag}:${"desc"}`
+      }
+      this.searchParams.order = newOrder
       this.getData()
     }
   },
